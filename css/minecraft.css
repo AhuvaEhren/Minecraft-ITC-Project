@@ -1,0 +1,18 @@
+*{
+    margin: 0px;
+}
+.game-board{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box{
+    background-color: lightskyblue;
+    height: 42px;
+    width: 42px;
+    border: 1px solid black;
+}
+
+  
