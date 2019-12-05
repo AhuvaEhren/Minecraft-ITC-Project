@@ -8,219 +8,215 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Doc</title>
-<style>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            height: 100vh;
+            width: 100vw;
+        }
 
-*{
-    margin: 0px;
-    padding: 0px;
-    height: 100vh;
-    width: 100vw;
-}
-body{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-.game-board{
-    max-height: 640px;
-    max-width: 1040px;
-    min-height: 640px;
-    min-width: 1040px;
-    display: flex;
-    flex-wrap: wrap;
-}
+        body {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
 
-.cell{
-    height: 40px;
-    width: 40px;
-    outline: 1px solid black;
-}
+        .game-board {
+            max-height: 640px;
+            max-width: 1040px;
+            min-height: 640px;
+            min-width: 1040px;
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-.sky{
-    background-color: lightskyblue;
-}
+        .cell {
+            height: 40px;
+            width: 40px;
+            outline: 1px solid black;
+        }
 
-.cloud{
-    background-color: white;
-}
+        .sky {
+            background-color: lightskyblue;
+        }
 
-.dirt{
-    background-image: url('images/dirt.jpg');
-    object-fit: contain;
-    background-size: 90%;
-}
+        .cloud {
+            background-color: white;
+        }
 
-.grass{
-    background-image: url('images/grass.jpg');
-    object-fit: contain;
-    background-size: 100%;
-}
+        .dirt {
+            background-image: url('images/dirt.jpg');
+            object-fit: contain;
+            background-size: 90%;
+        }
 
-.stone{
-    background-image: url('images/stone.jpg');
-    object-fit: contain;
-    background-size: 100%;
-}
+        .grass {
+            background-image: url('images/grass.jpg');
+            object-fit: contain;
+            background-size: 100%;
+        }
 
-.wood{
-    background-image: url('images/wood.jpg');
-    object-fit: contain;
-    background-size: 100%;
-}
+        .stone {
+            background-image: url('images/stone.jpg');
+            object-fit: contain;
+            background-size: 100%;
+        }
 
-.leaves{
-    background-image: url('images/leaves.jpg');
-    object-fit: contain;
-    background-size: 130%;
-}
+        .wood {
+            background-image: url('images/wood.jpg');
+            object-fit: contain;
+            background-size: 100%;
+        }
 
-.side-board{
-    height: 640px;
-    width: 225px;
-    background-color: teal;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .leaves {
+            background-image: url('images/leaves.jpg');
+            object-fit: contain;
+            background-size: 130%;
+        }
 
-.side-board div{
-    height: 70px;
-    width: 70px;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    
-}
+        .side-board {
+            height: 640px;
+            width: 225px;
+            background-color: teal;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.side-board img{
-    height: 60px;
-    width: 50px;
-}
+        .side-board div {
+            height: 70px;
+            width: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
 
-</style>
+        }
+
+        .side-board img {
+            height: 60px;
+            width: 50px;
+        }
+    </style>
 
 </head>
 
 <body>
 
 
-        <div class = game-board id="board"></div>
+    <div class=game-board id="board"></div>
 
-        <div class = side-board id="toolbar">
-            <div class="shovel" id="shovel">
-                <img src="images/shovel.png" alt="shovel"/> 
-                <div>Shovel</div>
+    <div class=side-board id="toolbar">
+        <div class="shovel" id="shovel">
+            <img src="images/shovel.png" alt="shovel" />
+            <div>Shovel</div>
+        </div>
+        <div class="axe" id="axe">
+            <div class="pickaxe" id="pickaxe">
             </div>
             <div id="gameCell"></div>
-    
+
         </div>
-                        
-    
-
-
-<script>
 
 
 
-var minecraft_game = {};
 
-minecraft_game.board = document.getElementById("board");
-minecraft_game.rows = 16;
-minecraft_game.columns = 26;
+        <script>
 
-//var myBoard = [];
+            // imgElement.src = "http://new-src.com";
 
-//board
-minecraft_game.createBoard = function () {
-    for (let j = 0; j < minecraft_game.rows; j++) {
-        //var arrayTwo = [];
-        //let rowDiv = document.createElement("div");
-        //rowDiv.classList.add("row" + j);
-        for (let i = 0; i < minecraft_game.columns; i++) {
-            //arrayTwo.push(i);
-            let colDiv = document.createElement("div");
-            colDiv.classList.add("sky", "cell");
-            colDiv.classList.add("col-" + i);
-            colDiv.classList.add("row-" + j);
-            minecraft_game.board.append(colDiv);
-        }
-        //myBoard.push(arrayTwo);
-        //rowDiv.classList.add("row" + j);
-    }
-}
+            var minecraft_game = {};
 
-minecraft_game.createBoard();
+            minecraft_game.board = document.getElementById("board");
+            minecraft_game.rows = 16;
+            minecraft_game.columns = 26;
 
-minecraft_game.cloud = document.querySelectorAll(".row-0.col-3,.row-1.col-2,.row-1.col-3,.row-1.col-4,.row-2.col-1,.row-2.col-2,.row-2.col-3,.row-2.col-4,.row-2.col-5, .row-1.col-16, .row-1.col-17, .row-2.col-15, .row-2.col-16 ");
-minecraft_game.cloud.forEach(item => {
-    item.classList.add('cloud');
-})
+            //var myBoard = [];
 
-minecraft_game.leaves = document.querySelectorAll(".row-3.col-9,.row-3.col-10,.row-4.col-8,.row-4.col-9,.row-4.col-10,.row-4.col-11,.row-4.col-20,.row-5.col-8,.row-5.col-11,.row-5.col-19,.row-5.col-20,.row-5.col-21,.row-6.col-19,.row-6.col-21");
-minecraft_game.leaves.forEach(item => {
-    item.classList.add('leaves');
-})
-
-minecraft_game.wood = document.querySelectorAll(".row-5.col-9,.row-8.col-10,.row-7.col-10,.row-7.col-11,.row-6.col-10,.row-5.col-10,.row-8.col-20,.row-7.col-20,.row-6.col-20");
-minecraft_game.wood.forEach(item => {
-    item.classList.add('wood');
-})
-
-minecraft_game.stone = document.querySelectorAll(".row-7.col-5,.row-8.col-4,.row-8.col-5,.row-8.col-6,.row-8.col-16,.row-8.col-17");
-minecraft_game.stone.forEach(item => {
-    item.classList.add('stone');
-})
-
-minecraft_game.grass = document.querySelectorAll(".row-9");
-minecraft_game.grass.forEach(item => {
-    item.classList.add('grass');
-})
-
-minecraft_game.dirt = document.querySelectorAll(".row-10,.row-11,.row-12,.row-13,.row-14,.row-15");
-minecraft_game.dirt.forEach(item => {
-    item.classList.add('dirt');
-})
-
-
-        //  //add event listener to cards - WWANT THIS FUNCTION TO ALWYAS BE ON if tool selected
-        // //  try const cellClicked = () => {
-        function cellsActive() {
-            let allCells = document.getElementsByClassName("cell");
-            for (let i = 0; i < allCells.length; i++) {
-                allCells[i].addEventListener("click", selectedCell);
-            }
-        }
-
-
-        //get cell image type, remove it and show in tool bar emty box
-        function selectedCell() {
-            if (event.target.className != 'sky') {
-                let clickedCell = event.target;
-                let gameCellImg = document.getElementById('gameCell'); 
-                if (clickedCell.classList.contains("dirt")) {
-                    gameCellImg.classList.add('dirt');
-                    clickedCell.classList.remove('dirt');
-                } else if (clickedCell.classList.contains("leaves")) {
-                    gameCellImg.classList.add('leaves');
-                    clickedCell.classList.remove('leaves');
-                } else if (clickedCell.classList.contains("wood")) {
-                    gameCellImg.classList.add('wood');
-                    clickedCell.classList.remove('wood');
-                } else if (clickedCell.classList.contains("grass")) {
-                    gameCellImg.classList.add('grass');
-                    clickedCell.classList.remove('grass');
-                } else if (clickedCell.classList.contains("stone")) {
-                    gameCellImg.classList.add('stone');
-                    clickedCell.classList.remove('stone');
-                } else {
-                    return;
+            //board
+            minecraft_game.createBoard = function () {
+                for (let j = 0; j < minecraft_game.rows; j++) {
+                    //var arrayTwo = [];
+                    //let rowDiv = document.createElement("div");
+                    //rowDiv.classList.add("row" + j);
+                    for (let i = 0; i < minecraft_game.columns; i++) {
+                        //arrayTwo.push(i);
+                        let colDiv = document.createElement("div");
+                        colDiv.classList.add("sky", "cell");
+                        colDiv.classList.add("col-" + i);
+                        colDiv.classList.add("row-" + j);
+                        minecraft_game.board.append(colDiv);
+                    }
+                    //myBoard.push(arrayTwo);
+                    //rowDiv.classList.add("row" + j);
                 }
             }
-        }
-    
+
+            minecraft_game.createBoard();
+
+            minecraft_game.cloud = document.querySelectorAll(".row-0.col-3,.row-1.col-2,.row-1.col-3,.row-1.col-4,.row-2.col-1,.row-2.col-2,.row-2.col-3,.row-2.col-4,.row-2.col-5, .row-1.col-16, .row-1.col-17, .row-2.col-15, .row-2.col-16 ");
+            minecraft_game.cloud.forEach(item => {
+                item.classList.add('cloud');
+            })
+
+            minecraft_game.leaves = document.querySelectorAll(".row-3.col-9,.row-3.col-10,.row-4.col-8,.row-4.col-9,.row-4.col-10,.row-4.col-11,.row-4.col-20,.row-5.col-8,.row-5.col-11,.row-5.col-19,.row-5.col-20,.row-5.col-21,.row-6.col-19,.row-6.col-21");
+            minecraft_game.leaves.forEach(item => {
+                item.classList.add('leaves', 'toolAxe', 'natureEl');
+            })
+
+            minecraft_game.wood = document.querySelectorAll(".row-5.col-9,.row-8.col-10,.row-7.col-10,.row-7.col-11,.row-6.col-10,.row-5.col-10,.row-8.col-20,.row-7.col-20,.row-6.col-20");
+            minecraft_game.wood.forEach(item => {
+                item.classList.add('wood', 'toolAxe', 'natureEl');
+            })
+
+            minecraft_game.stone = document.querySelectorAll(".row-7.col-5,.row-8.col-4,.row-8.col-5,.row-8.col-6,.row-8.col-16,.row-8.col-17");
+            minecraft_game.stone.forEach(item => {
+                item.classList.add('stone', 'toolPick', 'natureEl');
+            })
+
+            minecraft_game.grass = document.querySelectorAll(".row-9");
+            minecraft_game.grass.forEach(item => {
+                item.classList.add('grass', 'toolShovel', 'natureEl');
+            })
+
+            minecraft_game.dirt = document.querySelectorAll(".row-10,.row-11,.row-12,.row-13,.row-14,.row-15");
+            minecraft_game.dirt.forEach(item => {
+                item.classList.add('dirt', 'toolShovel', 'natureEl');
+            })
+
+
+            //  //add event listener to cells
+            // //  try const cellClicked = () => {
+            // function cellsActive() {
+            //     let allCells = document.getElementsByClassName("cell");
+            //     for (let i = 0; i < allCells.length; i++) {
+            //         allCells[i].addEventListener("click", selectedCell);
+            //     }
+            // }
+
+
+            // //get cell image type, remove it and show in toolbar box
+            // function selectedCell() {
+            //     if (event.target.className != 'sky') {
+            //         let clickedCell = event.target;
+            //         let gameCellImg = document.getElementById('gameCell'); 
+            //         if (clickedCell.classList.contains("dirt")) {
+            //             gameCellImg.classList.add('dirt');
+            //             clickedCell.classList.remove('dirt');
+            //         } else {
+            //             return;
+            //         }
+            //     }
+            // }
+
+
+            // a.Axe - for cutting trees
+            // b. Pickaxe - for mining rocks
+            // c. Shovel - for digging dirt
+
 
             // const elementClasses = Clicked.classList;
             // console.log(elementClasses);
@@ -229,93 +225,108 @@ minecraft_game.dirt.forEach(item => {
             // clickedCell.append();
             // paintCanvas.append(point);
 
-        //                 //max one tool event to paste to the game
-        //                 // function changeBoard(event) {
-        //                 //     let selectedTool= event.target;
-        //                 //     toolType = selectedTool.getAttribute("id");
-        //                 //     toolType.style.backgroundImage = cellImage;
-        //                 //     toolType.style.position = "absolute";
-        //                 //     board.append(toolType);
-        //                 // }
-          
+            //                 //max one tool event to paste to the game
+            //                 // function changeBoard(event) {
+            //                 //     let selectedTool= event.target;
+            //                 //     toolType = selectedTool.getAttribute("id");
+            //                 //     toolType.style.backgroundImage = cellImage;
+            //                 //     toolType.style.position = "absolute";
+            //                 //     board.append(toolType);
+            //                 // }
 
 
 
+            //axe
+            let axe = document.getElementById('axe');
+            axe.addEventListener('click', axeCellsActive);
+
+            function axeCellsActive() {
+                let allAxeCells = document.getElementsByClassName("toolAxe");
+                for (let i = 0; i < allAxeCells.length; i++) {
+                    allAxeCells[i].addEventListener("click", selectedAxeCell);
+                }
+            }
 
 
-
-        //             //create axe and attach event listener function (axe) {}
-        //             const axe = document.createElement('div');   
-        //             // axe.style.backgroundImage = "url('https://media1.thehungryjpeg.com/thumbs2/ori_3633772_jb4zc2oa226r0zjy1rrsguq6g3e966ahdi8lhunm_classic-animal-print-digital-paper.jpg')";
-        //             // axe.style.backgroundSize = "cover";
-        //             // axe.style.backgroundRepeat = "no-repeat";
-        //             // axe.style.backgroundSize = "100%";
-        //             // axe.style.textAlign = "center";
-        //             // axe.style.height = "50px";
-        //             axe.classList.add('tool');
-        //             axe.setAttribute("id", "axe");
-        //             document.getElementById("toolbar").appendChild(axe);
-        //             axe.addEventListener('click', function (event) {
-        //                 // cellImage = "url('https://media1.thehungryjpeg.com/thumbs2/ori_3633772_jb4zc2oa226r0zjy1rrsguq6g3e966ahdi8lhunm_classic-animal-print-digital-paper.jpg')";
-        //                 cellsActive();
-        //             })
-
-        //             //create pickaxe and attach event listener function (pickaxe) {}
-        //             const pickaxe = document.createElement('div');  
-        //             // pickaxe.style.backgroundImage = "url('https://media1.thehungryjpeg.com/thumbs2/ori_3633772_jb4zc2oa226r0zjy1rrsguq6g3e966ahdi8lhunm_classic-animal-print-digital-paper.jpg')";
-        //             // pickaxe.style.backgroundSize = "cover";
-        //             // pickaxe.style.backgroundRepeat = "no-repeat";
-        //             // pickaxe.style.backgroundSize = "100%";
-        //             // pickaxe.style.textAlign = "center";
-        //             // pickaxe.style.height = "50px";
-        //             pickaxe.classList.add('tool');
-        //             pickaxe.setAttribute("id", "pickaxe");
-        //             document.getElementById("toolbar").appendChild(pickaxe);
-        //             pickaxe.addEventListener('click', function (event) {
-        //                 // cellImage = "url('https://media1.thehungryjpeg.com/thumbs2/ori_3633772_jb4zc2oa226r0zjy1rrsguq6g3e966ahdi8lhunm_classic-animal-print-digital-paper.jpg')";
-        //                 cellsActive();
-        //             })
-
-                    //create shovel and attach event listener function (shovel) {}
-                    // const shovel = document.createElement('div');  
-                    let shovel = document.getElementById('shovel');
-                    // shovel.style.image = "url('images/shovel.png')";
-                    // shovel.style.backgroundSize = "cover";
-                    // shovel.style.backgroundRepeat = "no-repeat";
-                    // shovel.style.backgroundSize = "100%";
-                    // shovel.style.textAlign = "center";
-                    // shovel.style.height = "50px";
-                    shovel.classList.add('tool');
-                    // shovel.setAttribute("id", "shovel");
-                    // document.getElementById("toolbar").appendChild(shovel);
-                    shovel.addEventListener('click', function (event) {
-                        // cellImage = 'url(images/' + shovel + '.png)';
-                        cellsActive();
-                    })
-
-                    
+            function selectedAxeCell() {
+                let clickedCell = event.target;
+                let gameCellImg = document.getElementById('gameCell');
+                if (clickedCell.classList.contains("leaves")) {
+                    gameCellImg.classList.add('leaves', 'natureEl');
+                    clickedCell.classList.remove('leaves', 'toolAxe');
+                } else if (clickedCell.classList.contains("wood")) {
+                    gameCellImg.classList.add('wood', 'natureEl');
+                    clickedCell.classList.remove('wood', 'toolAxe');
+                } else {
+                    return;
+                }
+            }
 
 
-        //             //create space for gameCell and attach event listener function (gameCell) {}
-        //             const gameCell = document.createElement('div');  
-        //             // gameCell.style.textAlign = "center";
-        //             // gameCell.style.height = "50px";
-        //             gameCell.style.border = "3px solid white";
-        //             gameCell.style.backgroundColor = "darkgray";
-        //             gameCell.classList.add('tool');
-        //             gameCell.setAttribute("id", "gameCell");
-        //             document.getElementById("toolbar").appendChild(gameCell);
-        //             // if gameCell contains an image...
-        //             gameCell.addEventListener('click', function (event) {
-        //                 // cellImage = "url('https://media1.thehungryjpeg.com/thumbs2/ori_3633772_jb4zc2oa226r0zjy1rrsguq6g3e966ahdi8lhunm_classic-animal-print-digital-paper.jpg')";
-        //                 cellsActive();
-        //             })
+            //pickaxe
+            let pickaxe = document.getElementById('pickaxe');
+            pickaxe.addEventListener('click', pickCellsActive);
+
+            function pickCellsActive() {
+                let allPickCells = document.getElementsByClassName("toolPick");
+                for (let i = 0; i < allPickCells.length; i++) {
+                    allPickCells[i].addEventListener("click", selectedPickCell);
+                }
+            }
+
+            function selectedPickCell() {
+                let clickedCell = event.target;
+                let gameCellImg = document.getElementById('gameCell');
+                if (clickedCell.classList.contains("stone")) {
+                    gameCellImg.classList.add('stone', 'natureEl');
+                    clickedCell.classList.remove('stone', 'toolPick');
+                } else {
+                    return;
+                }
+            }
 
 
+            //axe
+            let shovel = document.getElementById('shovel');
+            shovel.addEventListener('click', shovelCellsActive);
+
+            function shovelCellsActive() {
+                let allShovelCells = document.getElementsByClassName("toolShovel");
+                for (let i = 0; i < allShovelCells.length; i++) {
+                    allShovelCells[i].addEventListener("click", selectedShovelCell);
+                }
+            }
+
+            function selectedShovelCell() {
+                let clickedCell = event.target;
+                let gameCellImg = document.getElementById('gameCell');
+                if (clickedCell.classList.contains("dirt")) {
+                    gameCellImg.classList.add('dirt', 'natureEl');
+                    clickedCell.classList.remove('dirt', 'toolShovel');
+                } else if (clickedCell.classList.contains("grass")) {
+                    gameCellImg.classList.add('grass', 'natureEl');
+                    clickedCell.classList.remove('grass', 'toolShovel');
+                } else {
+                    return;
+                }
+            }
 
 
+            //game cell
+            let gameCell = document.getElementById('gameCell');
+            if (gameCell.classList.contains("natureEl")) {
+                gameCell.addEventListener('click', gameCellActive);
+            }
 
-</script>
+            // first page/tutorial modal 
+            // I did not make any changes to the CSS content, the gameCell will need to be added to it - why it looks funny now
+            // I need to deal w pasting the game cell and limiting where they can go
+            // put a counter where needed (ex if only can do something once)
+            //new game button
+            //way to search all 8 neibhors of a cells for sky ()
+
+
+        </script>
 
 </body>
 
